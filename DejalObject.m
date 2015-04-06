@@ -487,11 +487,12 @@ NSString * const DejalObjectKeyVersion = @"version";
  Sets the property with the specified key to the value from the dictionary with the old key.  Only sets the property if there is a corresponding value in the dictionary; otherwise the previous value remains (e.g. from the default values).  Subclasses shouldn't need to override this, but may want to call it from -setDictionary: if they have old keys.
  
  @author DJS 2011-12.
+ @version DJS 2015-04: Changed to process the value to support embedded represented objects.
 */
 
 - (void)setValueForKey:(NSString *)key fromOldKey:(NSString *)oldKey inDictionary:(NSDictionary *)dict;
 {
-    id value = dict[oldKey];
+    id value = [self processValue:dict[oldKey]];
     
     if (value)
     {

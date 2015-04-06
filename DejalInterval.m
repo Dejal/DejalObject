@@ -137,10 +137,13 @@ NSString * const DejalIntervalKeyExtraValues = @"extraValues";
  NSCoding protocol method; encodes the receiver using the specified archiver.
  
  @author DJS 2011-02.
+ @version DJS 2015-04: Added missing super call.
 */
 
 - (void)encodeWithCoder:(NSCoder *)coder;
 {
+    [super encodeWithCoder:coder];
+    
     [coder encodeBool:self.usingRange forKey:DejalIntervalKeyUsingRange];
     [coder encodeInteger:self.firstAmount forKey:DejalIntervalKeyFirstAmount];
     [coder encodeInteger:self.secondAmount forKey:DejalIntervalKeySecondAmount];
