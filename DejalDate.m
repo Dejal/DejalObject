@@ -229,8 +229,14 @@ NSString * const DejalDateKeyString = @"string";
 
 - (void)setDate:(NSDate *)date;
 {
+    [self willChangeValueForKey:@"date"];
+    [self willChangeValueForKey:@"string"];
+    
     self.cachedDate = date;
     self.cachedString = nil;
+    
+    [self didChangeValueForKey:@"date"];
+    [self didChangeValueForKey:@"string"];
 }
 
 /**
@@ -257,8 +263,14 @@ NSString * const DejalDateKeyString = @"string";
 
 - (void)setString:(NSString *)string;
 {
+    [self willChangeValueForKey:@"date"];
+    [self willChangeValueForKey:@"string"];
+    
     self.cachedDate = nil;
     self.cachedString = string;
+    
+    [self didChangeValueForKey:@"date"];
+    [self didChangeValueForKey:@"string"];
 }
 
 /**

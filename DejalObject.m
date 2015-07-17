@@ -133,6 +133,7 @@ NSString * const DejalObjectKeyVersion = @"version";
  Designated initializer, using default values.  Subclasses shouldn't need to override this; override -loadDefaultValues instead.
  
  @author DJS 2011-12.
+ @version DJS 2015-07: added the old & new options to the observers.
 */
 
 - (instancetype)init;
@@ -143,7 +144,7 @@ NSString * const DejalObjectKeyVersion = @"version";
         
         for (NSString *key in self.savedKeys)
         {
-            [self addObserver:self forKeyPath:key options:0 context:NULL];
+            [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:NULL];
         }
     }
     
@@ -303,6 +304,20 @@ NSString * const DejalObjectKeyVersion = @"version";
 + (BOOL)supportsSecureCoding;
 {
     return YES;
+}
+
+/**
+ Determines whether or not another object is equivalent to the receiver.
+ 
+ @param object Another object to compare.
+ @returns YES if the two objects are equivalent, otherwise NO.
+ 
+ @author DJS 2015-07.
+ */
+
+- (BOOL)isEqual:(id)object;
+{
+    return [self isEqualToObject:object];
 }
 
 /**
@@ -504,11 +519,15 @@ NSString * const DejalObjectKeyVersion = @"version";
  Key-Value Observing method when one of the saved properties of the receiver changes.  Simply sets the hasChanges flag.  Subclasses shouldn't need to override this.
  
  @author DJS 2011-12.
+ @version DJS 2015-07: Only sets the changes flag if the old and new values aren't equal.
 */
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
 {
-    self.hasChanges = YES;
+    if (![change[@"old"] isEqual:change[@"new"]])
+    {
+        self.hasChanges = YES;
+    }
 }
 
 /**
