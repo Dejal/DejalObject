@@ -44,6 +44,8 @@
 + (instancetype)dateWithDistantPast;
 + (instancetype)dateWithDistantFuture;
 
+- (void)addTimeInterval:(NSTimeInterval)timeInterval;
+
 - (NSString *)descriptionWithShortDateTime;
 
 @end

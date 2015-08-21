@@ -296,6 +296,17 @@ NSString * const DejalDateKeyString = @"string";
 }
 
 /**
+ Adds a number of seconds to the receiver.
+ 
+ @author DJS 2015-08.
+ */
+
+- (void)addTimeInterval:(NSTimeInterval)timeInterval;
+{
+    self.date = [self.date dateByAddingTimeInterval:timeInterval];
+}
+
+/**
  Returns an array of keys that correspond to the defined properties of the receiver.  These are used to load from and save to a dictionary.
  
  @returns The keys for the properties.
