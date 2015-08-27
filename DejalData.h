@@ -1,11 +1,11 @@
 //
-//  DejalDate.h
+//  DejalData.h
 //  Dejal Open Source
 //
-//  Created by David Sinclair on 2015-02-16.
+//  Created by David Sinclair on 2015-08-27.
 //  Copyright (c) 2015 Dejal Systems, LLC. All rights reserved.
 //
-//  This class is useful to store dates in represented objects, including automatic
+//  This class is useful to store data in represented objects, including automatic
 //  dictionary or JSON encoding.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
@@ -33,76 +33,50 @@
 #import "DejalObject.h"
 
 
-@interface DejalDate : DejalObject
+@interface DejalData : DejalObject
 
 /**
  Property for the OS data representation of the receiver.
  
- @author DJS 2015-02.
+ @author DJS 2015-08.
  */
 
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSData *data;
 
 /**
- Property for the string representation of the receiver.
+ Property for the Base-64, UTF-8 encoded string representation of the receiver.
  
- @author DJS 2015-02.
+ @author DJS 2015-08.
  */
 
 @property (nonatomic, strong) NSString *string;
 
 /**
- Property for the time interval since now of the receiver.  If the receiver is earlier than the current date & time, the result is negative.
- 
- @author DJS 2015-02.
- */
-
-@property (nonatomic) NSTimeInterval timeIntervalSinceNow;
-
-/**
- Convenience class method to create a new DejalDate instance with the specified OS date.
- 
- @param date The date to use.
- @returns A new DejalDate instance.
- 
- @author DJS 2014-02.
- */
-
-+ (instancetype)dateWithDate:(NSDate *)date;
-
-/**
- Convenience class method to create a new DejalDate instance with the current date.
- 
- @author DJS 2014-02.
- */
-
-+ (instancetype)dateWithNow;
-
-/**
- Convenience class method to create a new DejalDate instance with the distant past date.
- 
- @author DJS 2014-02.
- */
-
-+ (instancetype)dateWithDistantPast;
-
-/**
- Convenience class method to create a new DejalDate instance with the distant future date.
- 
- @author DJS 2014-02.
- */
-
-+ (instancetype)dateWithDistantFuture;
-
-/**
- Adds a number of seconds to the receiver.
+ Read-only property; returns YES if the receiver's data is nil.  Doesn't trigger Base-64 encoding or decoding.
  
  @author DJS 2015-08.
  */
 
-- (void)addTimeInterval:(NSTimeInterval)timeInterval;
+@property (nonatomic, readonly, getter=isEmpty) BOOL empty;
 
-- (NSString *)descriptionWithShortDateTime;
+/**
+ Property for the length of the OS data representation of the receiver.  Don't set this; it's just settable for KVC purposes.
+ 
+ @author DJS 2015-08.
+ */
+
+@property (nonatomic) NSUInteger length;
+
+/**
+ Convenience class method to create a new DejalData instance with the specified OS data.
+ 
+ @param data The data to use.
+ @returns A new DejalData instance.
+ 
+ @author DJS 2015-08.
+ */
+
++ (instancetype)dataWithData:(NSData *)data;
 
 @end
 
