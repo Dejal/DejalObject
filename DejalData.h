@@ -68,6 +68,16 @@
 @property (nonatomic) NSUInteger length;
 
 /**
+ Convenience class method to create a new DejalData instance with nil data.
+ 
+ @returns A new DejalData instance.
+ 
+ @author DJS 2015-08.
+ */
+
++ (instancetype)data;
+
+/**
  Convenience class method to create a new DejalData instance with the specified OS data.
  
  @param data The data to use.

@@ -53,6 +53,19 @@ NSString * const DejalDataKeyString = @"string";
 @implementation DejalData
 
 /**
+ Convenience class method to create a new DejalData instance with nil data.
+ 
+ @returns A new DejalData instance.
+ 
+ @author DJS 2015-08.
+ */
+
++ (instancetype)data;
+{
+    return [self dataWithData:nil];
+}
+
+/**
  Convenience class method to create a new DejalData instance with the specified OS data.
  
  @param data The data to use.
