@@ -84,6 +84,24 @@ NSString * const DejalDataKeyString = @"string";
 }
 
 /**
+ Convenience class method to create a new DejalData instance with the specified arbitrary object.
+ 
+ @param object The object to use.
+ @returns A new DejalData instance.
+ 
+ @author DJS 2015-08.
+ */
+
++ (instancetype)dataWithObject:(id)object;
+{
+    DejalData *obj = [self new];
+    
+    obj.object = object;
+    
+    return obj;
+}
+
+/**
  Initializer from a coder.  Supports secure coding.
  
  @param decoder The coder to use.
@@ -218,6 +236,28 @@ NSString * const DejalDataKeyString = @"string";
     [self didChangeValueForKey:@"data"];
     [self didChangeValueForKey:@"string"];
     [self didChangeValueForKey:@"length"];
+}
+
+/**
+ Returns an arbitrary object representation of the receiver, unarchived from the data.
+ 
+ @author DJS 2015-08.
+ */
+
+- (id)object;
+{
+    return self.data ? [NSKeyedUnarchiver unarchiveObjectWithData:self.data] : nil;
+}
+
+/**
+ Sets an arbitrary object representation in the receiver, archived to the data.
+ 
+ @author DJS 2015-08.
+ */
+
+- (void)setObject:(id)object;
+{
+    self.data = object ? [NSKeyedArchiver archivedDataWithRootObject:object] : nil;
 }
 
 /**

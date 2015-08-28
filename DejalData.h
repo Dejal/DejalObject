@@ -52,6 +52,14 @@
 @property (nonatomic, strong) NSString *string;
 
 /**
+ Property for an arbitrary object representation of the receiver.  It is automatically archived into the data.
+ 
+ @author DJS 2015-08.
+ */
+
+@property (nonatomic, strong) id object;
+
+/**
  Read-only property; returns YES if the receiver's data is nil.  Doesn't trigger Base-64 encoding or decoding.
  
  @author DJS 2015-08.
@@ -87,6 +95,17 @@
  */
 
 + (instancetype)dataWithData:(NSData *)data;
+
+/**
+ Convenience class method to create a new DejalData instance with the specified arbitrary object.
+ 
+ @param object The object to use.
+ @returns A new DejalData instance.
+ 
+ @author DJS 2015-08.
+ */
+
++ (instancetype)dataWithObject:(id)object;
 
 @end
 
