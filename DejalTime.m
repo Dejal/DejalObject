@@ -312,7 +312,7 @@ NSString * const DejalTimeKeyTimeZoneName = @"timeZoneName";
 
 - (NSString *)description;
 {
-    return [NSString stringWithFormat:@"%@: %@", [self className], self.descriptionWithShortTime];
+    return [NSString stringWithFormat:@"%@: %@", [super description], self.descriptionWithShortTime];
 }
 
 /**

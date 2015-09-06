@@ -38,7 +38,7 @@
 @property (nonatomic, strong) NSDictionary *dictionary;
 @property (nonatomic, strong, readonly) NSArray *savedKeys;
 @property (nonatomic) NSUInteger version;
-@property (nonatomic,strong) NSString *representedClassName;
+@property (nonatomic, strong) NSString *representedClassName;
 @property (nonatomic) BOOL hasChanges;
 @property (nonatomic, readonly) BOOL hasAnyChanges;
 

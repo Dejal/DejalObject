@@ -321,7 +321,7 @@ NSString * const DejalDateKeyString = @"string";
 
 - (NSString *)description;
 {
-    return [NSString stringWithFormat:@"%@: %@ ('%@')", [self className], self.descriptionWithShortDateTime, self.string];
+    return [NSString stringWithFormat:@"%@: %@ ('%@')", [super description], self.descriptionWithShortDateTime, self.string];
 }
 
 - (NSString *)descriptionWithShortDateTime;

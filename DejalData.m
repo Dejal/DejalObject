@@ -313,7 +313,7 @@ NSString * const DejalDataKeyString = @"string";
 
 - (NSString *)description;
 {
-    return [NSString stringWithFormat:@"%@: %@", [self className], [NSByteCountFormatter stringFromByteCount:self.length countStyle:NSByteCountFormatterCountStyleMemory]];
+    return [NSString stringWithFormat:@"%@: %@", [super description], [NSByteCountFormatter stringFromByteCount:self.length countStyle:NSByteCountFormatterCountStyleMemory]];
 }
 
 @end

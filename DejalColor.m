@@ -226,7 +226,7 @@ NSString * const DejalColorKeyAlpha = @"alpha";
 
 - (NSString *)description;
 {
-    return [NSString stringWithFormat:@"%@: red: %@, green: %@, blue: %@, alpha: %@", [self className], @(self.red), @(self.green), @(self.blue), @(self.alpha)];
+    return [NSString stringWithFormat:@"%@: red: %@, green: %@, blue: %@, alpha: %@", [super description], @(self.red), @(self.green), @(self.blue), @(self.alpha)];
 }
 
 @end

@@ -568,5 +568,16 @@ NSString * const DejalObjectKeyVersion = @"version";
     return @[DejalObjectKeyVersion, DejalObjectKeyClassName];
 }
 
+/**
+ A string representation of the receiver, including the class name, for debugging.
+ 
+ @author DJS 2015-09.
+ */
+
+- (NSString *)description;
+{
+    return [NSString stringWithFormat:@"%@%@", self.representedClassName, self.hasAnyChanges ? @" [CHANGED]" : @""];
+}
+
 @end
 
