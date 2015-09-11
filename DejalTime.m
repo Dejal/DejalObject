@@ -232,7 +232,7 @@ NSString * const DejalTimeKeyTimeZoneName = @"timeZoneName";
 {
     if (!self.cachedDate)
     {
-        self.cachedDate = [self dateBySettingTimeWithDate:[NSDate date]];
+        self.cachedDate = [self dateBySettingTimeToday];
     }
     
     return self.cachedDate;
@@ -259,6 +259,17 @@ NSString * const DejalTimeKeyTimeZoneName = @"timeZoneName";
     
     // Have to set this after the above, as setting them clears this:
     self.cachedDate = date;
+}
+
+/**
+ Returns today's date with the time compoennts set from the receiver.
+ 
+ @author DJS 2015-09.
+ */
+
+- (NSDate *)dateBySettingTimeToday;
+{
+    return [self dateBySettingTimeWithDate:[NSDate date]];
 }
 
 /**

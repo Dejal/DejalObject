@@ -121,6 +121,14 @@
 + (instancetype)timeWithHour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second timeZoneName:(NSString *)timeZoneName;
 
 /**
+ Returns today's date with the time compoennts set from the receiver.
+ 
+ @author DJS 2015-09.
+ */
+
+- (NSDate *)dateBySettingTimeToday;
+
+/**
  Returns a date with the time components set from the receiver.
  
  @param date A date to use.
