@@ -69,6 +69,32 @@ NSString * const DejalTimeKeyTimeZoneName = @"timeZoneName";
 }
 
 /**
+ Convenience class method to create a new DejalTime instance with midnight as the time.  Uses the local time zone.
+ 
+ @returns A new DejalTime instance.
+ 
+ @author DJS 2015-09.
+ */
+
++ (instancetype)timeWithMidnight;
+{
+    return [self timeWithHour:0 minute:0 second:0];
+}
+
+/**
+ Convenience class method to create a new DejalTime instance with noon as the time.  Uses the local time zone.
+ 
+ @returns A new DejalTime instance.
+ 
+ @author DJS 2015-09.
+ */
+
++ (instancetype)timeWithNoon;
+{
+    return [self timeWithHour:12 minute:0 second:0];
+}
+
+/**
  Convenience class method to create a new DejalTime instance with the specified time.  Uses the local time zone.
  
  @param hour The hour to use.

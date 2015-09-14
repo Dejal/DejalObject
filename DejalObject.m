@@ -100,8 +100,6 @@ NSString * const DejalObjectKeyVersion = @"version";
     if ((self = [self init]))
     {
         self.dictionary = dictionary;
-        
-        self.hasChanges = NO;
     }
     
     return self;
@@ -183,6 +181,17 @@ NSString * const DejalObjectKeyVersion = @"version";
 }
 
 /**
+ Updates any values based on the version.  Invoked after loading from a dictionary or JSON.  The version will be updated after this is finished.  Subclasses may override this method, calling super, to upgrade any needed values.  Refer to the version property to determine what to upgrade.
+ 
+ @author DJS 2015-09.
+ */
+
+- (void)upgradeValues;
+{
+    // Does nothing by default
+}
+
+/**
  Returns a JSON representation of the receiver, using the savedKeys array.  You should probably set the hasChanges flag to NO after calling this, if the values are being saved.
  
  @author DJS 2014-01.
@@ -259,11 +268,19 @@ NSString * const DejalObjectKeyVersion = @"version";
  
  @author DJS 2011-12.
  @version DJS 2015-02: Renamed from -loadFromDictionary: to setDictionary:, so it works as a property.
+ @version DJS 2015-09: Now upgrades the values and updates the version after loading.
  */
 
 - (void)setDictionary:(NSDictionary *)dict;
 {
+    NSInteger vers = self.version;
+    
     [self setValuesForKeys:self.savedKeys withDictionary:dict];
+    
+    [self upgradeValues];
+    
+    self.version = vers;
+    self.hasChanges = NO;
 }
 
 /**

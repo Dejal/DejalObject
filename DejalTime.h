@@ -94,6 +94,26 @@
 + (instancetype)timeWithDate:(NSDate *)date;
 
 /**
+ Convenience class method to create a new DejalTime instance with midnight as the time.  Uses the local time zone.
+ 
+ @returns A new DejalTime instance.
+ 
+ @author DJS 2015-09.
+ */
+
++ (instancetype)timeWithMidnight;
+
+/**
+ Convenience class method to create a new DejalTime instance with noon as the time.  Uses the local time zone.
+ 
+ @returns A new DejalTime instance.
+ 
+ @author DJS 2015-09.
+ */
+
++ (instancetype)timeWithNoon;
+
+/**
  Convenience class method to create a new DejalTime instance with the specified time.  Uses the local time zone.
  
  @param hour The hour to use.

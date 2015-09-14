@@ -49,6 +49,7 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 
 - (void)loadDefaultValues;
+- (void)upgradeValues;
 
 - (BOOL)isEqualToObject:(id)object;
 
