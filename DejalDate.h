@@ -76,7 +76,7 @@
  @author DJS 2014-02.
  */
 
-+ (instancetype)dateWithNow;
++ (instancetype)dateWithNow NS_SWIFT_NAME(now());
 
 /**
  Convenience class method to create a new DejalDate instance with the distant past date.
@@ -84,7 +84,7 @@
  @author DJS 2014-02.
  */
 
-+ (instancetype)dateWithDistantPast;
++ (instancetype)dateWithDistantPast NS_SWIFT_NAME(distantPast());
 
 /**
  Convenience class method to create a new DejalDate instance with the distant future date.
@@ -92,7 +92,7 @@
  @author DJS 2014-02.
  */
 
-+ (instancetype)dateWithDistantFuture;
++ (instancetype)dateWithDistantFuture NS_SWIFT_NAME(distantFuture());
 
 /**
  Adds a number of seconds to the receiver.
