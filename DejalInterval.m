@@ -463,7 +463,7 @@ NSString * const DejalIntervalKeyExtraValues = @"extraValues";
  @author DJS around 2002 in the NSString categories; copied here in 2011-10.
 */
 
-+ (NSString *)stringWithIntegerValue:(NSInteger)value singluar:(NSString *)singular plural:(NSString *)plural
++ (NSString *)stringWithIntegerValue:(NSInteger)value singular:(NSString *)singular plural:(NSString *)plural
 {
     if (value == 1 && singular)
     {
