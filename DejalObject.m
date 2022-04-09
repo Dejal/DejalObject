@@ -294,9 +294,9 @@ NSString * const DejalObjectKeyVersion = @"version";
 
 - (instancetype)copyWithZone:(NSZone *)zone;
 {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:nil];
     
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    return [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:data error:nil];
 }
 
 /**

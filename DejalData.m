@@ -246,7 +246,7 @@ NSString * const DejalDataKeyString = @"string";
 
 - (id)object;
 {
-    return self.data ? [NSKeyedUnarchiver unarchiveObjectWithData:self.data] : nil;
+    return self.data ? [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:self.data error:nil] : nil;
 }
 
 /**
@@ -257,7 +257,7 @@ NSString * const DejalDataKeyString = @"string";
 
 - (void)setObject:(id)object;
 {
-    self.data = object ? [NSKeyedArchiver archivedDataWithRootObject:object] : nil;
+    self.data = object ? [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:YES error:nil] : nil;
 }
 
 /**
