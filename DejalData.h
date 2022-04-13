@@ -3,7 +3,7 @@
 //  Dejal Open Source
 //
 //  Created by David Sinclair on 2015-08-27.
-//  Copyright (c) 2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2015-2022 Dejal Systems, LLC. All rights reserved.
 //
 //  This class is useful to store data in represented objects, including automatic
 //  dictionary or JSON encoding.
@@ -42,6 +42,12 @@
  */
 
 @property (nonatomic, strong) NSData *data;
+
+/**
+ Property for the name of the class of the data of the receiver.
+ */
+
+@property (nonatomic, strong) NSString *dataClass;
 
 /**
  Property for the Base-64, UTF-8 encoded string representation of the receiver.

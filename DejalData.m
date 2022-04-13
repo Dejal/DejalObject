@@ -3,7 +3,7 @@
 //  Dejal Open Source
 //
 //  Created by David Sinclair on 2015-08-27.
-//  Copyright (c) 2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2015-2022 Dejal Systems, LLC. All rights reserved.
 //
 //  This class is useful to store data in represented objects, including automatic
 //  dictionary or JSON encoding.
@@ -39,6 +39,7 @@ NSUInteger const DejalDataVersion = 1;
 
 NSString * const DejalDataKeyLength = @"length";
 NSString * const DejalDataKeyString = @"string";
+NSString * const DejalDataKeyClass = @"dataClass";
 
 
 @interface DejalData ()
@@ -79,6 +80,7 @@ NSString * const DejalDataKeyString = @"string";
     DejalData *obj = [self new];
     
     obj.data = data;
+    obj.dataClass = [data className];
     
     return obj;
 }
@@ -117,6 +119,7 @@ NSString * const DejalDataKeyString = @"string";
         // Need to set the length after the string, since setting the string will make it unknown length:
         self.string = [decoder decodeObjectOfClass:[NSString class] forKey:DejalDataKeyString];
         self.length = [decoder decodeIntegerForKey:DejalDataKeyLength];
+        self.dataClass = [decoder decodeObjectOfClass:[NSString class] forKey:DejalDataKeyClass];
     }
     
     return self;
@@ -136,6 +139,7 @@ NSString * const DejalDataKeyString = @"string";
     
     [encoder encodeObject:self.string forKey:DejalDataKeyString];
     [encoder encodeInteger:self.length forKey:DejalDataKeyLength];
+    [encoder encodeObject:self.dataClass forKey:DejalDataKeyClass];
 }
 
 /**
@@ -162,6 +166,7 @@ NSString * const DejalDataKeyString = @"string";
     self.version = DejalDataVersion;
     self.length = 0;
     self.data = nil;
+    self.dataClass = nil;
 }
 
 /**
@@ -246,7 +251,18 @@ NSString * const DejalDataKeyString = @"string";
 
 - (id)object;
 {
-    return self.data ? [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:self.data error:nil] : nil;
+    if (self.data && self.dataClass)
+    {
+        return [NSKeyedUnarchiver unarchivedObjectOfClass:NSClassFromString(self.dataClass) fromData:self.data error:nil];
+    }
+    else if (self.data)
+    {
+        return [NSKeyedUnarchiver unarchiveObjectWithData:self.data];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 /**
@@ -258,6 +274,7 @@ NSString * const DejalDataKeyString = @"string";
 - (void)setObject:(id)object;
 {
     self.data = object ? [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:YES error:nil] : nil;
+    self.dataClass = [object className];
 }
 
 /**
@@ -308,12 +325,12 @@ NSString * const DejalDataKeyString = @"string";
 
 - (NSArray *)savedKeys;
 {
-    return [[super savedKeys] arrayByAddingObjectsFromArray:@[DejalDataKeyLength, DejalDataKeyString]];
+    return [[super savedKeys] arrayByAddingObjectsFromArray:@[DejalDataKeyLength, DejalDataKeyString, DejalDataKeyClass]];
 }
 
 - (NSString *)description;
 {
-    return [NSString stringWithFormat:@"%@: %@", [super description], [NSByteCountFormatter stringFromByteCount:self.length countStyle:NSByteCountFormatterCountStyleMemory]];
+    return [NSString stringWithFormat:@"%@ of %@: %@", [super description], self.dataClass, [NSByteCountFormatter stringFromByteCount:self.length countStyle:NSByteCountFormatterCountStyleMemory]];
 }
 
 @end
