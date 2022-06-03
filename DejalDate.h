@@ -3,7 +3,7 @@
 //  Dejal Open Source
 //
 //  Created by David Sinclair on 2015-02-16.
-//  Copyright (c) 2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2015-2022 Dejal Systems, LLC. All rights reserved.
 //
 //  This class is useful to store dates in represented objects, including automatic
 //  dictionary or JSON encoding.
@@ -58,6 +58,12 @@
  */
 
 @property (nonatomic) NSTimeInterval timeIntervalSinceNow;
+
+/**
+ Returns whether or not the date is today.
+ */
+
+@property (nonatomic) BOOL isToday;
 
 /**
  Convenience class method to create a new DejalDate instance with the specified OS date.
