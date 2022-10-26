@@ -63,7 +63,7 @@
  Returns whether or not the date is today.
  */
 
-@property (nonatomic) BOOL isToday;
+@property (nonatomic, readonly) BOOL isToday;
 
 /**
  Convenience class method to create a new DejalDate instance with the specified OS date.
