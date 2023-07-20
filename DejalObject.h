@@ -3,7 +3,7 @@
 //  Dejal Open Source
 //
 //  Created by David Sinclair on 2011-12-07.
-//  Copyright (c) 2011-2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2011-2023 Dejal Systems, LLC. All rights reserved.
 //
 //  This class is an abstract data model that can represent subclasses as
 //  dictionary or JSON data for saving to disk or over the network.
@@ -52,6 +52,7 @@
 
 - (void)loadDefaultValues;
 - (void)upgradeValues;
+- (void)upgradeValuesWithDictionary:(NSDictionary *)dict;
 
 - (BOOL)isEqualToObject:(id)object;
 
