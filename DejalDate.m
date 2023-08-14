@@ -3,7 +3,7 @@
 //  Dejal Open Source
 //
 //  Created by David Sinclair on 2015-02-16.
-//  Copyright (c) 2015-2022 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2015-2023 Dejal Systems, LLC. All rights reserved.
 //
 //  This class is useful to store dates in represented objects, including automatic
 //  dictionary or JSON encoding.
@@ -280,6 +280,24 @@ NSString * const DejalDateKeyString = @"string";
 - (BOOL)isToday;
 {
     return [[NSCalendar currentCalendar] isDateInToday:self.date];
+}
+
+/**
+ Returns whether or not the date is the distant past.
+ */
+
+- (BOOL)isDistantPast;
+{
+    return [self.date isEqualToDate:[NSDate distantPast]];
+}
+
+/**
+ Returns whether or not the date is the distant future.
+ */
+
+- (BOOL)isDistantFuture;
+{
+    return [self.date isEqualToDate:[NSDate distantFuture]];
 }
 
 /**

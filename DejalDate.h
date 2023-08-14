@@ -3,7 +3,7 @@
 //  Dejal Open Source
 //
 //  Created by David Sinclair on 2015-02-16.
-//  Copyright (c) 2015-2022 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2015-2023 Dejal Systems, LLC. All rights reserved.
 //
 //  This class is useful to store dates in represented objects, including automatic
 //  dictionary or JSON encoding.
@@ -64,6 +64,18 @@
  */
 
 @property (nonatomic, readonly) BOOL isToday;
+
+/**
+ Returns whether or not the date is the distant past.
+ */
+
+@property (nonatomic, readonly) BOOL isDistantPast;
+
+/**
+ Returns whether or not the date is the distant future.
+ */
+
+@property (nonatomic, readonly) BOOL isDistantFuture;
 
 /**
  Convenience class method to create a new DejalDate instance with the specified OS date.
